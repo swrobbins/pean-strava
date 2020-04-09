@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   frontend:
@@ -14,6 +14,7 @@ services:
     build: express-server
     ports:
       - "3000:3000"
+      - "9229:9229"
     container_name: back-container
     #restart: always
     volumes:

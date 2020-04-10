@@ -10,9 +10,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class UsersComponent implements OnInit {
 
-  // Link to our api, pointing to localhost
-  API = 'http://localhost:3000/api';
-
   // Declare empty list of users
   users: any[] = [];
   user: any;
@@ -45,7 +42,7 @@ export class UsersComponent implements OnInit {
   // Add one user to the API
   public addUser() {
     console.log(this.f.mobile.value);
-    this.http.post(`${this.API}/users`, { user: this.userProfile.value })
+    this.http.post(`/api/users`, { user: this.userProfile.value })
       .subscribe(() => {
         this.getAllUsers();
       });
@@ -53,7 +50,7 @@ export class UsersComponent implements OnInit {
 
   // Get all users from the API
   public getAllUsers() {
-    this.http.get(`${this.API}/users`)
+    this.http.get(`/api/users`)
       .subscribe((users: any) => {
         this.users = users;
       });
@@ -62,14 +59,14 @@ export class UsersComponent implements OnInit {
   // Find 1 user by ID
 
   public findUser(id) {
-    this.http.get(`${this.API}/users/${id}`).subscribe((user) => {
+    this.http.get(`/api/users/${id}`).subscribe((user) => {
       this.user = user;
     });
   }
 
   // Delete 1 user by ID
   public removeUser(id) {
-    this.http.delete(`${this.API}/users/${id}`).subscribe(() => {
+    this.http.delete(`/api/users/${id}`).subscribe(() => {
       this.getAllUsers();
     });
   }
